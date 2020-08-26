@@ -16,17 +16,13 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Employee implements Serializable {
+public class Department implements Serializable {
     private static final Long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long departmentId;
-
     private String name;
-
-    private Integer age;
 
 }
