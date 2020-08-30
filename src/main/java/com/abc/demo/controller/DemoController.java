@@ -13,8 +13,8 @@ public class DemoController {
     private MessageService messageService;
 
     @GetMapping("/test/{message}")
-    public String test(@PathVariable String message) throws Exception {
-        return messageService.send(message);
+    public void test(@PathVariable String message) throws Exception {
+        messageService.send(message);
     }
 
 }

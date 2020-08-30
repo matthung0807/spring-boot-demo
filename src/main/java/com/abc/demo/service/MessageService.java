@@ -5,8 +5,6 @@ import com.abc.demo.mq.receiver.Receiver;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.TimeUnit;
-
 @Service
 public class MessageService {
 
@@ -18,15 +16,12 @@ public class MessageService {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    public String send(String message) throws Exception {
+    public void send(String message) throws Exception {
         System.out.println("Sending message:" + message);
         rabbitTemplate.convertAndSend(
                 RabbitMqConfig.TOPIC_EXCHANGE_NAME,
                 "demo-routing-key",
                 message);
-        receiver.getLatch().await(1, TimeUnit.SECONDS);
-        return receiver.getMessage();
-
     }
 
 }
