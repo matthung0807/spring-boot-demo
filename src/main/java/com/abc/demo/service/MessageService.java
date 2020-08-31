@@ -17,8 +17,7 @@ public class MessageService {
         System.out.println("Sending message:" + message);
         rabbitTemplate.convertAndSend(
                 RabbitMqConfig.TOPIC_EXCHANGE_NAME,
-                "demo-routing-key",
+                RabbitMqConfig.ROUTING_KEY,
                 message);
     }
-
 }
