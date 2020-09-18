@@ -10,12 +10,17 @@ import org.springframework.boot.test.mock.mockito.SpyBean;
 @SpringBootTest
 class DemoScheduleTaskTests {
 
+    private final static int MIN_NUMBER_OF_INVOCATIONS = 2;
+
     @SpyBean
     DemoScheduleTask demoScheduleTask;
 
+    /**
+     * 測試DemoScheduleTask.printUnixEpochTime()在10秒鐘至少被執行2次
+     */
     @Test
-    void printUnixEpochTime_test() {
+    void printUnixEpochTime_testInvocationAtLeastTwoTimesDuringTenSeconds() {
         Awaitility.await().atMost(Durations.TEN_SECONDS).untilAsserted(
-                () -> Mockito.verify(demoScheduleTask, Mockito.atLeast(2)).printUnixEpochTime());
+                () -> Mockito.verify(demoScheduleTask, Mockito.atLeast(MIN_NUMBER_OF_INVOCATIONS)).printUnixEpochTime());
     }
 }
