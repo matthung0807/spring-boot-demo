@@ -12,7 +12,7 @@ class DemoScheduleTaskTests {
 
     private final static int MIN_NUMBER_OF_INVOCATIONS = 2;
 
-    @SpyBean
+    @SpyBean // 用@SpyBean才可被Mockito.verify驗證備測試對象的調用次數
     DemoScheduleTask demoScheduleTask;
 
     /**
@@ -20,7 +20,9 @@ class DemoScheduleTaskTests {
      */
     @Test
     void printUnixEpochTime_testInvocationAtLeastTwoTimesDuringTenSeconds() {
-        Awaitility.await().atMost(Durations.TEN_SECONDS).untilAsserted(
-                () -> Mockito.verify(demoScheduleTask, Mockito.atLeast(MIN_NUMBER_OF_INVOCATIONS)).printUnixEpochTime());
+        Awaitility.await()
+                .atMost(Durations.TEN_SECONDS) // 等待期間10秒
+                .untilAsserted( // 直到assert發生停止等待
+                        () -> Mockito.verify(demoScheduleTask, Mockito.atLeast(MIN_NUMBER_OF_INVOCATIONS)).printUnixEpochTime()); // 驗證demoScheduleTask.printUnixEpochTime()被調用2次
     }
 }
