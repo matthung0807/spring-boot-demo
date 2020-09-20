@@ -1,4 +1,4 @@
-package com.abc.demo.repository;
+package com.abc.demo.entity.repository;
 
 import com.abc.demo.entity.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
