@@ -15,23 +15,8 @@ import java.util.List;
 @Service
 public class EmployeeService {
 
-    @Value("classpath:static/user_icon.png")
-    private Resource resource;
-
     @Autowired
     private EmployeeRepository employeeRepository;
-
-    @PostConstruct
-    void addPhoto() throws IOException {
-        byte[] photo = IOUtils.toByteArray(resource.getInputStream());
-        List<Employee> employeeList = employeeRepository.findAll();
-
-        for(Employee employee : employeeList) {
-            employee.setPhoto(photo);
-        }
-
-        employeeRepository.saveAll(employeeList);
-    }
 
     public List<Employee> getAllEmployee() {
         return employeeRepository.findAll();

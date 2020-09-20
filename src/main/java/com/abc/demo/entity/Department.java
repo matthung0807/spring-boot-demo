@@ -17,7 +17,8 @@ import java.time.Instant;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Employee implements Serializable {
+public class Department implements Serializable {
+
     private static final Long serialVersionUID = 1L;
 
     @Id
