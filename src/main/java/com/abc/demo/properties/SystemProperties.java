@@ -13,25 +13,23 @@ import java.util.Map;
 @ConfigurationProperties(prefix = "system")
 public class SystemProperties {
 
-    /** System Name */
     private String name;    // system.name
-    /** System Versoin */
     private String version; // system.version
     private String url;     // system.url
     private String port;    // system.port
 
-    private Map<String, String> keyMap;
+    private Map<String, String> keyMap; // {key2=value2;, key1=value1}
 
     @NestedConfigurationProperty
-    private Admin admin;
+    private Admin admin; // system.admin
 
     @Getter
     @Setter
     public static class Admin {
 
-        private String username;
-        private String password;
-        private List<String> schemas;
+        private String username; // system.admin.username
+        private String password; // system.admin.password
+        private List<String> schemas; // system.admin.schemas
 
     }
 
