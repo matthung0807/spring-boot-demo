@@ -17,10 +17,16 @@ public class DemoApplication {
         ApplicationContext ctx = SpringApplication.run(DemoApplication.class, args);
         SystemProperties systemProperties = ctx.getBean(SystemProperties.class);
 
-        System.out.println(systemProperties.getName());
-        System.out.println(systemProperties.getVersion());
-        System.out.println(systemProperties.getUrl());
-        System.out.println(systemProperties.getPort());
+        System.out.println(systemProperties.getName());    // Demo system
+        System.out.println(systemProperties.getVersion()); // 1.0.0
+        System.out.println(systemProperties.getUrl());     // 192.168.0.111
+        System.out.println(systemProperties.getPort());    // 8080
+
+        System.out.println(systemProperties.getKeyMap());  // {key2=value2;, key1=value1}
+
+        System.out.println(systemProperties.getAdmin().getUsername()); // admin
+        System.out.println(systemProperties.getAdmin().getPassword()); // 12345
+        System.out.println(systemProperties.getAdmin().getSchemas());  // [greenlake, redsky]
 
     }
 
