@@ -1,28 +1,18 @@
 package com.abc.demo.properties;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.ConstructorBinding;
 
 @Getter
-@ConstructorBinding
+@Setter
 @ConfigurationProperties(prefix = "system")
 public class SystemProperties {
 
-    private final String name;    // system.name
-    private final String version; // system.version
-    private final String url;     // system.url
-    private final String port;    // system.port
-
-    public SystemProperties(
-            String name,
-            String version,
-            String url,
-            String port) {
-        this.name = name;
-        this.version = version;
-        this.url = url;
-        this.port = port;
-    }
+    /** System Name */
+    private String name;    // system.name
+    private String version; // system.version
+    private String url;     // system.url
+    private String port;    // system.port
 
 }
