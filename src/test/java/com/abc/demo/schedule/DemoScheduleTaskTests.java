@@ -23,6 +23,7 @@ class DemoScheduleTaskTests {
         Awaitility.await()
                 .atMost(Durations.TEN_SECONDS) // 等待期間10秒
                 .untilAsserted( // 直到assert發生停止等待
-                        () -> Mockito.verify(demoScheduleTask, Mockito.atLeast(MIN_NUMBER_OF_INVOCATIONS)).printUnixEpochTime()); // 驗證demoScheduleTask.printUnixEpochTime()被調用2次
+                        () -> Mockito.verify(demoScheduleTask, Mockito.atLeast(MIN_NUMBER_OF_INVOCATIONS))
+                                .printUnixEpochTime()); // 驗證demoScheduleTask.printUnixEpochTime()被調用2次
     }
 }
