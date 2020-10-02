@@ -3,9 +3,11 @@ package com.abc.demo;
 import com.abc.demo.properties.SystemProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.PropertySource;
 
+@EnableConfigurationProperties(SystemProperties.class)
 @PropertySource("classpath:system.properties")
 @SpringBootApplication
 public class DemoApplication {
