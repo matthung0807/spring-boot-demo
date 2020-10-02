@@ -7,7 +7,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "system")
-//@Component
 public class SystemProperties {
 
     private String name;    // system.name
