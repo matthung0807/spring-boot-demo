@@ -9,9 +9,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "system")
 public class SystemProperties {
 
-    private String name;    // system.name
-    private String version; // system.version
-    private String url;     // system.url
-    private String port;    // system.port
+    private String name;    // system.name (system.yaml)
+    private String version; // system.version (system.yaml)
+    private String url;     // system.url (system.properties)
+    private String port;    // system.port (system.properties)
 
 }
