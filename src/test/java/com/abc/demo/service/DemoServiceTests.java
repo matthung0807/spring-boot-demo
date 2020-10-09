@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 
-@ActiveProfiles("test")
+@TestPropertySource(properties = "app.name=Test Application")
 @SpringBootTest
 class DemoServiceTests {
 
@@ -14,15 +14,10 @@ class DemoServiceTests {
     private DemoService demoService;
 
     @Test
-    void plus_test() {
+    void getAppName_test() {
 
-        int x = 1;
-        int y = 2;
-
-        int actual = demoService.plus(x, y);
-
-        int expected = x + y;
-        Assertions.assertEquals(expected, actual);
+        String appName = demoService.getAppName();
+        Assertions.assertEquals("Test Application", appName);
 
     }
 }
