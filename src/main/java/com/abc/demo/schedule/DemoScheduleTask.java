@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class DemoScheduleTask {
 
-    @Scheduled(initialDelay = 2000, fixedRate = 3000)
+    @Scheduled(fixedRate = 3000)
     public void printUnixEpochTime() {
         System.out.println(System.currentTimeMillis());
     }
