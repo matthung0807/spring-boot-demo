@@ -18,7 +18,7 @@ class DemoControllerTests {
     @Test
     void getName_id_1_return_jeff() throws Exception {
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/demo/get/name/1"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/get/name/1"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string("jeff"));
 
