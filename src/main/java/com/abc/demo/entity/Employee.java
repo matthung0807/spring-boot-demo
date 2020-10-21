@@ -27,6 +27,4 @@ public class Employee implements Serializable {
 
     private String name;
 
-    private Integer age;
-
 }
