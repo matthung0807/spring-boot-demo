@@ -13,6 +13,8 @@ public class DemoDao {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    /** 新增 */
+    @Transactional
     public void insert(String name) {
         Employee employee = Employee.builder()
                 .name(name)
@@ -20,6 +22,8 @@ public class DemoDao {
         employeeRepository.save(employee);
     }
 
+    /** 修改1 */
+    @Transactional
     public void update1(long id, String name) {
         employeeRepository.findById(id).ifPresent(e -> {
             e.setName(name);
@@ -27,6 +31,7 @@ public class DemoDao {
         });
     }
 
+    /** 修改2 */
     @Transactional(propagation = Propagation.REQUIRES_NEW) // 另外產生新的交易，所以丟出例外時僅此方法的異動回滾
     public void update2(long id, String name) {
         try {

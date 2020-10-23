@@ -13,7 +13,7 @@ public class DemoService {
 
     @Transactional
     public void modify() {
-        demoDao.insert("Ivy");
+        demoDao.insert("Ivy");        // { "id"=1, "name"="Ivy" }
         demoDao.update1(1L, "John");  // Ivy -> John
         demoDao.update2(1L, "Kenny"); // John -> Kenny
     }
