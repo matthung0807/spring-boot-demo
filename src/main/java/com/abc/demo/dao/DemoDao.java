@@ -1,5 +1,6 @@
 package com.abc.demo.dao;
 
+import com.abc.demo.entity.Employee;
 import com.abc.demo.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,6 +12,13 @@ public class DemoDao {
 
     @Autowired
     private EmployeeRepository employeeRepository;
+
+    public void insert(String name) {
+        Employee employee = Employee.builder()
+                .name(name)
+                .build();
+        employeeRepository.save(employee);
+    }
 
     public void update1(long id, String name) {
         employeeRepository.findById(id).ifPresent(e -> {
