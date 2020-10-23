@@ -39,7 +39,7 @@ public class DemoDao {
                 e.setName(name);
                 employeeRepository.save(e);
             });
-            throw new RuntimeException("Database error.");
+            throw new RuntimeException("Database error."); // 模擬交易中發生錯誤
         } catch (Exception e) {
             e.printStackTrace();
         }

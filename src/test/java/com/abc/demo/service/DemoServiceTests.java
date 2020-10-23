@@ -23,7 +23,7 @@ class DemoServiceTests {
         String name = employeeRepository.findById(1L)
                 .map(Employee::getName).orElse("");
 
-        Assertions.assertEquals("John", name);
+        Assertions.assertEquals("John", name); // pass
     }
 
 }
