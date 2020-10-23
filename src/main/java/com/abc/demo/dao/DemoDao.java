@@ -27,7 +27,7 @@ public class DemoDao {
         });
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRES_NEW) // 另外產生新的交易，所以丟出例外時僅此方法的異動回滾
     public void update2(long id, String name) {
         try {
             employeeRepository.findById(id).ifPresent(e -> {
