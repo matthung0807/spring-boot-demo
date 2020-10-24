@@ -1,14 +1,13 @@
 package com.abc.demo.entity;
 
+import com.abc.demo.entity.enumeration.State;
+import com.abc.demo.entity.enumeration.converter.StateConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Data
@@ -23,10 +22,9 @@ public class Employee implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long departmentId;
-
     private String name;
 
-    private Integer age;
+    @Convert(converter = StateConverter.class)
+    private State state;
 
 }
