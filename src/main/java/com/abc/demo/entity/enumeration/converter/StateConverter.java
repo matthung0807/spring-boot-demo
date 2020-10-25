@@ -7,6 +7,7 @@ import javax.persistence.Converter;
 
 @Converter(autoApply = true)
 public class StateConverter implements AttributeConverter<State, Integer> {
+
     @Override
     public Integer convertToDatabaseColumn(State attribute) {
         return attribute.getCode();
@@ -20,4 +21,5 @@ public class StateConverter implements AttributeConverter<State, Integer> {
 
         return State.of(dbData);
     }
+
 }

@@ -2,9 +2,7 @@ package com.abc.demo.entity.enumeration;
 
 import lombok.Getter;
 
-/**
- * 員工狀態
- */
+/** 員工狀態 */
 public enum State {
 
     /** 正常 */
