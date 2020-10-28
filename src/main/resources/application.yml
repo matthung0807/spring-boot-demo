@@ -8,4 +8,4 @@ spring:
     config:
       server:
         native:
-          searchLocations: file:///D:/server/config
+          searchLocations: classpath:config/
