@@ -4,8 +4,7 @@ import com.abc.demo.entity.Employee;
 import com.abc.demo.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class EmployeeService {
@@ -13,8 +12,23 @@ public class EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    public List<Employee> getAllEmployee() {
-        return employeeRepository.findAll();
+    /** 無try-catch 會觸發@Transactional rollback */
+    @Transactional
+    public void addWithoutTryCatch() {
+        employeeRepository.save(new Employee("John"));
+        throw new RuntimeException("Save data error!");
+    }
+
+    /** 有try-catch 不會觸發@Transactional rollback*/
+    @Transactional
+    public void addWithTryCatch() {
+
+        try {
+            employeeRepository.save(new Employee("John"));
+            throw new RuntimeException("Save data error!");
+        } catch (Exception e) {
+        }
+
     }
 
 }
