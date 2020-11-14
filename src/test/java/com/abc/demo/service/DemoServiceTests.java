@@ -10,10 +10,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 @SpringBootTest
-public class EmployeeServiceTests {
+public class DemoServiceTests {
 
     @Autowired
-    EmployeeService employeeService;
+    DemoService demoService;
 
     @Autowired
     EmployeeRepository employeeRepository;
@@ -22,7 +22,7 @@ public class EmployeeServiceTests {
     void addWithoutTryCatch_rollback() {
 
         try {
-            employeeService.addWithoutTryCatch();
+            demoService.addWithoutTryCatch();
         } catch (Exception e) {
         }
 
@@ -33,7 +33,7 @@ public class EmployeeServiceTests {
     @Test
     void addWithTryCatch_noRollback() {
 
-        employeeService.addWithTryCatch();
+        demoService.addWithTryCatch();
         List<Employee> employeeList = employeeRepository.findAll();
         Assertions.assertEquals(1, employeeList.size());
 

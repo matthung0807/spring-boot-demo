@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class EmployeeService {
+public class DemoService {
 
     @Autowired
     private EmployeeRepository employeeRepository;
