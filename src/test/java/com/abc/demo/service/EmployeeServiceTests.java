@@ -1,41 +1,27 @@
 package com.abc.demo.service;
 
 import com.abc.demo.entity.Employee;
-import com.abc.demo.repository.EmployeeRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
+import org.springframework.orm.jpa.JpaSystemException;
 
 @SpringBootTest
 public class EmployeeServiceTests {
 
     @Autowired
-    EmployeeService employeeService;
-
-    @Autowired
-    EmployeeRepository employeeRepository;
+    private EmployeeService employeeService;
 
     @Test
-    void addWithoutTryCatch_rollback() {
-
-        try {
-            employeeService.addWithoutTryCatch();
-        } catch (Exception e) {
-        }
-
-        List<Employee> employeeList = employeeRepository.findAll();
-        Assertions.assertEquals(0, employeeList.size());
+    public void alterId_throwJpaSystemException() {
+        Assertions.assertThrows(JpaSystemException.class, () -> employeeService.alterId());
     }
 
     @Test
-    void addWithTryCatch_noRollback() {
-
-        employeeService.addWithTryCatch();
-        List<Employee> employeeList = employeeRepository.findAll();
-        Assertions.assertEquals(1, employeeList.size());
-
+    public void alterIdByCreateNew_correct() {
+        Employee employee = employeeService.alterIdByCreateNew();
+        Assertions.assertEquals(2L, employee.getId());
     }
+
 }

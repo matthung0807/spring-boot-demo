@@ -2,6 +2,7 @@ package com.abc.demo.service;
 
 import com.abc.demo.entity.Employee;
 import com.abc.demo.repository.EmployeeRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,23 +13,28 @@ public class EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    /** 無try-catch 會觸發@Transactional rollback */
     @Transactional
-    public void addWithoutTryCatch() {
-        employeeRepository.save(new Employee("John"));
-        throw new RuntimeException("Save data error!");
+    public Employee alterId() {
+        Employee employee = employeeRepository.findById(1L).orElse(null);
+        if (employee != null) {
+            employee.setId(2L);
+            return employeeRepository.save(employee); // 拋錯
+        }
+        return null;
     }
 
-    /** 有try-catch 不會觸發@Transactional rollback*/
     @Transactional
-    public void addWithTryCatch() {
+    public Employee alterIdByCreateNew() {
+        Employee employee = employeeRepository.findById(1L).orElse(null);
+        if (employee != null) {
+            Employee employeeNew = new Employee();
+            BeanUtils.copyProperties(employee, employeeNew);
+            employeeNew.setId(2L);
 
-        try {
-            employeeRepository.save(new Employee("John"));
-            throw new RuntimeException("Save data error!");
-        } catch (Exception e) {
+            employeeRepository.delete(employee);
+            return employeeRepository.save(employeeNew);
         }
-
+        return null;
     }
 
 }
