@@ -1,13 +1,9 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3-alpine'
-        }
-    }
+    agent any
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                echo 'spring-boot-demo build starting'
             }
         }
     }
