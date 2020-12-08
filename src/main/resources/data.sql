@@ -1,1 +1,0 @@
-INSERT INTO employee (ID, NAME) VALUES (1, 'John');
