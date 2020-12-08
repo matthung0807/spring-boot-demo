@@ -41,7 +41,7 @@ public class EmployeeServiceTests {
     }
 
     @Test
-    void concurrentUpdate_optimisticLocking() throws InterruptedException {
+    void updateName_concurrentUpdateOptimisticLocking() throws InterruptedException {
         long id = 1L;
 
         Employee employee = new Employee();
@@ -49,10 +49,10 @@ public class EmployeeServiceTests {
         employee.setName("John");
         employeeRepository.save(employee);
 
-        final ExecutorService executorService = Executors.newFixedThreadPool(2); // 2 threads in thread pool
+        final ExecutorService executorService = Executors.newFixedThreadPool(2); // create 2 threads in thread pool
+
         // transaction 1
         executorService.execute(() -> employeeService.updateName(id, "Luke"));
-
         // transaction 2
         executorService.execute(() -> employeeService.updateName(id, "Leon"));
 
@@ -63,6 +63,32 @@ public class EmployeeServiceTests {
                 .orElseThrow(EntityNotFoundException::new);
 
         Assertions.assertEquals(1L, result.getVersion());
+
+    }
+
+    @Test
+    void updateNameUntilSuccess_success() throws InterruptedException {
+        long id = 1L;
+
+        Employee employee = new Employee();
+        employee.setId(id);
+        employee.setName("John");
+        employeeRepository.save(employee);
+
+        final ExecutorService executorService = Executors.newFixedThreadPool(2); // create 2 threads in thread pool
+
+        // transaction 1
+        executorService.execute(() -> employeeService.updateNameUntilSuccess(id, "Luke"));
+        // transaction 2
+        executorService.execute(() -> employeeService.updateNameUntilSuccess(id, "Leon"));
+
+        executorService.shutdown();
+        executorService.awaitTermination(1, TimeUnit.MINUTES);
+
+        Employee result = employeeRepository.findById(1L)
+                .orElseThrow(EntityNotFoundException::new);
+
+        Assertions.assertEquals(2L, result.getVersion());
 
     }
 
