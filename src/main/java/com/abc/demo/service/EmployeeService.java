@@ -32,6 +32,8 @@ public class EmployeeService {
 
     public void updateNameUntilSuccess(long id, String name) {
         boolean success = false;
+        int count = 0; // max re-try count
+
         while (!success) {
             try {
                 System.out.println(Thread.currentThread().getName() + " update begin");
@@ -44,6 +46,10 @@ public class EmployeeService {
                 System.out.println(Thread.currentThread().getName() + " update success");
                 success = true;
             } catch (OptimisticLockingFailureException e) {
+                count++;
+                if (count > 3) {
+                    throw e;
+                }
                 System.out.println("Optimistic locking occur");
                 try {
                     Thread.sleep(1000L); // wait 1 seconds
@@ -51,7 +57,6 @@ public class EmployeeService {
                     System.out.println("Thread interrupted");
                 }
             }
-
         }
     }
 
