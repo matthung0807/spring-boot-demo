@@ -8,6 +8,6 @@ public class DemoController {
 
     @GetMapping("/hello")
     public String hello() {
-        return "Hello World Spring Boot build by Jenkins Maven plugin";
+        return "Hello World Spring Boot build by Jib Maven plugin";
     }
 }
