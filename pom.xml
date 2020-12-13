@@ -57,6 +57,10 @@
                 <configuration>
                     <to>
                         <image>docker.io/matthung0807/spring-boot-demo</image>
+                        <auth>
+                            <username>matthung0807</username>
+                            <password>********</password>
+                        </auth>
                     </to>
                 </configuration>
             </plugin>
