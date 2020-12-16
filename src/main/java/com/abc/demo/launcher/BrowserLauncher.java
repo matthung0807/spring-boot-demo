@@ -9,6 +9,7 @@ import java.net.URI;
 
 @Component
 public class BrowserLauncher {
+
     @EventListener(ApplicationReadyEvent.class)
     public void launchBrowser() {
         System.setProperty("java.awt.headless", "false");
@@ -16,6 +17,7 @@ public class BrowserLauncher {
         try {
             desktop.browse(new URI("http://localhost:8080/demo"));
         } catch (Exception e) {
+            // handle error
         }
     }
 }

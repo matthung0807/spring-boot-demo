@@ -9,11 +9,11 @@ public class DemoController {
 
     @RequestMapping("/")
     public ModelAndView index() {
-        return new ModelAndView("index");
+        return new ModelAndView("index"); // 根據view resolver mapping至/WEB-INF/jsp/index.jsp
     }
 
     @RequestMapping("/hello")
     public ModelAndView hello() {
-        return new ModelAndView("hello"); // 根據view resolver mapping至hello.jsp
+        return new ModelAndView("hello"); // 根據view resolver mapping至/WEB-INF/jsp/hello.jsp
     }
 }
