@@ -30,7 +30,6 @@ public class DepartmentService {
     public void deleteDepartment(long id) {
         List<Employee> employeeList = employeeRepository.findByDepartmentId(id);
 
-
         TransactionDefinition transactionDefinition = new DefaultTransactionDefinition();
         TransactionStatus transactionStatus = platformTransactionManager.getTransaction(transactionDefinition);
         try {
