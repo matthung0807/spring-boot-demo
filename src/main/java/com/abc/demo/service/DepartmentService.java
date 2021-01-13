@@ -32,13 +32,13 @@ public class DepartmentService {
     }
 
 //    @Transactional
-    public void deleteDepartment(Long id) {
-        List<Employee> employeeList = employeeRepository.findByDepartmentId(id);
+    public void deleteDepartment(long id) {
 
         transactionTemplate.execute(new TransactionCallbackWithoutResult() {
             @Override
             protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
                 try {
+                    List<Employee> employeeList = employeeRepository.findByDepartmentId(id);
                     employeeRepository.deleteInBatch(employeeList);
                     departmentRepository.deleteById(id);
                     if (id == 1L) {
