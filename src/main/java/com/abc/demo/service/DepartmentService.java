@@ -28,11 +28,11 @@ public class DepartmentService {
     private PlatformTransactionManager platformTransactionManager;
 
     public void deleteDepartment(long id) {
-        List<Employee> employeeList = employeeRepository.findByDepartmentId(id);
 
         TransactionDefinition transactionDefinition = new DefaultTransactionDefinition();
         TransactionStatus transactionStatus = platformTransactionManager.getTransaction(transactionDefinition);
         try {
+            List<Employee> employeeList = employeeRepository.findByDepartmentId(id);
             employeeRepository.deleteInBatch(employeeList); // 刪除部門所屬員工資料
             departmentRepository.deleteById(id); // 刪除部門資料
             if (id == 1L) {
