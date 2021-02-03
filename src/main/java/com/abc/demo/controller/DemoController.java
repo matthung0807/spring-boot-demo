@@ -60,6 +60,7 @@ public class DemoController {
 
     /**
      * Google Authenticator TOTP驗證
+     *
      * @param code 一次性驗證碼
      * @return 驗證結果
      */
