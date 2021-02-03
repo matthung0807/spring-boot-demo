@@ -52,7 +52,7 @@ public class DemoController {
      */
     private String createGoogleAuthenticatorKeyUri(String secret) {
         String otpType = "totp";
-        String account = "ABC:john@@abc.com";
+        String account = "ABC:john@abc.com";
         String issuer = "ABC";
         String googleAuthenticatorKeyUriFormat = "otpauth://%s/%s?secret=%s&issuer=%s";
         return String.format(googleAuthenticatorKeyUriFormat, otpType, account, secret, issuer);
