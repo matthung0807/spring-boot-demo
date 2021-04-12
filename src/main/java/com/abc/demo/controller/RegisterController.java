@@ -23,7 +23,6 @@ public class RegisterController {
 
     @PostMapping("/register")
     public String register(@Valid @RequestBody RegisterRequest registerRequest) {
-
         Rule[] rules = {
                 new CharactersLengthRule(),
                 new CharactersTypeRule(

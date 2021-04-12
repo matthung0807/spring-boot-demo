@@ -1,6 +1,7 @@
 package com.abc.demo.controller;
 
 import com.abc.demo.controller.request.RegisterRequest;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,9 @@ public class RegisterControllerTests {
     private MockMvc mockMvc;
 
     @Test
-    void register_passwordSuccess() throws Exception {
-
+    void register_password_returnSuccess() throws Exception {
         RegisterRequest request = new RegisterRequest("abc", "abc123");
-        String jsonString = new ObjectMapper().writer().writeValueAsString(request);
-
+        String jsonString = toJsonString(request);
         mockMvc.perform(
                 post("/register")
                         .contentType(MediaType.APPLICATION_JSON).content(jsonString))
@@ -33,5 +32,9 @@ public class RegisterControllerTests {
                 .andExpect(content().string("success")
                 );
 
+    }
+
+    private String toJsonString(Object object) throws JsonProcessingException {
+        return new ObjectMapper().writer().writeValueAsString(object);
     }
 }

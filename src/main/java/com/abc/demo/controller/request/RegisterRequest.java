@@ -1,15 +1,13 @@
 package com.abc.demo.controller.request;
 
 import com.abc.demo.controller.validation.annotation.Password;
-import lombok.Data;
 
 import java.io.Serializable;
 
-@Data
 public class RegisterRequest implements Serializable {
 
     private String account;
-    @Password
+//    @Password
     private String password;
 
     public RegisterRequest(String account, String password) {
@@ -17,4 +15,19 @@ public class RegisterRequest implements Serializable {
         this.password = password;
     }
 
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

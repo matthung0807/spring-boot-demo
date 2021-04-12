@@ -15,7 +15,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = {PasswordValidator.class})
 public @interface Password {
 
-    String message() default "密碼格式錯誤"; // 預設驗證錯誤訊息
+    String message() default "Invalid password";
 
     Class<?>[] groups() default {};
 

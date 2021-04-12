@@ -36,8 +36,7 @@ public class CharactersTypeRule implements Rule {
         return true;
     }
 
-    private boolean isLessThanCount(
-            String pattern, String content, int count) {
+    private boolean isLessThanCount(String pattern, String content, int count) {
         Matcher matcher = Pattern.compile(pattern).matcher(content);
         int matchCount = 0;
         while (matcher.find()) {
