@@ -1,13 +1,13 @@
 package com.abc.demo.controller;
 
 import com.abc.demo.controller.request.RegisterRequest;
-import com.abc.demo.service.validation.PasswordValidationService;
-import com.abc.demo.service.validation.rule.Rule;
-import com.abc.demo.service.validation.rule.CharactersLengthRule;
-import com.abc.demo.service.validation.rule.CharactersTypeRule;
-import com.abc.demo.service.validation.rule.NoRepeatSequenceRule;
-import com.abc.demo.service.validation.rule.character.LowercaseCharacter;
-import com.abc.demo.service.validation.rule.character.DigitCharacter;
+import com.abc.passwordvalidator.PasswordValidationService;
+import com.abc.passwordvalidator.rule.CharactersLengthRule;
+import com.abc.passwordvalidator.rule.CharactersTypeRule;
+import com.abc.passwordvalidator.rule.NoRepeatSequenceRule;
+import com.abc.passwordvalidator.rule.Rule;
+import com.abc.passwordvalidator.rule.character.DigitCharacter;
+import com.abc.passwordvalidator.rule.character.LowercaseCharacter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

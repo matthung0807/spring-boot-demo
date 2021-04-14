@@ -1,9 +1,9 @@
 package com.abc.demo.controller.validation.validator;
 
 import com.abc.demo.controller.validation.annotation.Password;
-import com.abc.demo.service.validation.PasswordValidationService;
-import com.abc.demo.service.validation.PasswordValidationServiceImpl;
-import com.abc.demo.service.validation.rule.CharactersLengthRule;
+import com.abc.passwordvalidator.PasswordValidationService;
+import com.abc.passwordvalidator.PasswordValidationServiceImpl;
+import com.abc.passwordvalidator.rule.CharactersLengthRule;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

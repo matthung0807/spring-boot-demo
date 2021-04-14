@@ -1,7 +1,7 @@
 package com.abc.demo;
 
-import com.abc.demo.service.validation.PasswordValidationService;
-import com.abc.demo.service.validation.PasswordValidationServiceImpl;
+import com.abc.passwordvalidator.PasswordValidationService;
+import com.abc.passwordvalidator.PasswordValidationServiceImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
