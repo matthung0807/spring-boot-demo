@@ -8,9 +8,6 @@ public class PasswordValidationServiceImpl implements PasswordValidationService 
 
     @Override
     public boolean isValid(String password, Rule... rules) {
-        if (rules == null || rules.length == 0) {
-            return true;
-        }
         log.info("validate password by rules={}", rules);
 
         for (Rule rule : rules) {

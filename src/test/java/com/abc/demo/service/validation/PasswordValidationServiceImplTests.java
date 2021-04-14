@@ -19,11 +19,7 @@ public class PasswordValidationServiceImplTests {
 
     @Test
     public void isValid_5to12() {
-        String password = "12345";
         Rule[] rules = {new CharactersLengthRule(5, 12)};
-
-        boolean valid = passwordValidationService.isValid(password, rules);
-        Assertions.assertTrue(valid);
 
         Assertions.assertAll(
                 () -> Assertions.assertTrue(passwordValidationService.isValid("12345", rules)),
@@ -34,11 +30,7 @@ public class PasswordValidationServiceImplTests {
 
     @Test
     public void isValid_5digit() {
-        String password = "11111";
         Rule[] rules = {new CharactersTypeRule(new DigitCharacter(5))};
-
-        boolean valid = passwordValidationService.isValid(password, rules);
-        Assertions.assertTrue(valid);
 
         Assertions.assertAll(
                 () -> Assertions.assertTrue(passwordValidationService.isValid("11111", rules)),
