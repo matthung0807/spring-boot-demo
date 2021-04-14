@@ -6,12 +6,12 @@ Spring Boot Demo
 Write a password validation service, meant to be configurable via IoC (using dependency
 injection engine of your choice). The service is meant to check a text string for compliance
 to any number of password validation rules. The rules currently known are:
- 
+
 1. Must consist of a mixture of lowercase letters and numerical digits only, with at least one
 of each.
 2. Must be between 5 and 12 characters in length.
 3. Must not contain any sequence of characters immediately followed by the same sequence.
- 
+
 
 The project should include a build capability in one of the following
 tools, Eclipse, IntelliJ, ant, or maven. The project should be ready for insertion into a

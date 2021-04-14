@@ -1,4 +1,4 @@
-package com.abc.demo.service;
+package com.abc.demo.service.validation;
 
 import com.abc.demo.service.validation.rule.Rule;
 

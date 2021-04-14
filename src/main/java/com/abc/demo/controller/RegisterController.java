@@ -1,13 +1,13 @@
 package com.abc.demo.controller;
 
 import com.abc.demo.controller.request.RegisterRequest;
-import com.abc.demo.service.PasswordValidationService;
+import com.abc.demo.service.validation.PasswordValidationService;
 import com.abc.demo.service.validation.rule.Rule;
-import com.abc.demo.service.validation.rule.character.CharactersLengthRule;
-import com.abc.demo.service.validation.rule.character.CharactersTypeRule;
-import com.abc.demo.service.validation.rule.character.NoRepeatSequenceRule;
-import com.abc.demo.service.validation.rule.character.type.LowercaseCharacter;
-import com.abc.demo.service.validation.rule.character.type.DigitCharacter;
+import com.abc.demo.service.validation.rule.CharactersLengthRule;
+import com.abc.demo.service.validation.rule.CharactersTypeRule;
+import com.abc.demo.service.validation.rule.NoRepeatSequenceRule;
+import com.abc.demo.service.validation.rule.character.LowercaseCharacter;
+import com.abc.demo.service.validation.rule.character.DigitCharacter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,7 +24,7 @@ public class RegisterController {
     @PostMapping("/register")
     public String register(@Valid @RequestBody RegisterRequest registerRequest) {
         Rule[] rules = {
-                new CharactersLengthRule(),
+                new CharactersLengthRule(5, 12),
                 new CharactersTypeRule(
                         new LowercaseCharacter(1),
                         new DigitCharacter(1)

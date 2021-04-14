@@ -22,14 +22,31 @@ public class RegisterControllerTests {
     private MockMvc mockMvc;
 
     @Test
-    void register_password_returnSuccess() throws Exception {
-        RegisterRequest request = new RegisterRequest("abc", "abc123");
+    void register_password_success() throws Exception {
+        String account = "abc";
+        String password = "abc123";
+        RegisterRequest request = new RegisterRequest(account, password);
         String jsonString = toJsonString(request);
         mockMvc.perform(
                 post("/register")
                         .contentType(MediaType.APPLICATION_JSON).content(jsonString))
                 .andExpect(status().isOk())
                 .andExpect(content().string("success")
+                );
+
+    }
+
+    @Test
+    void register_password_fail() throws Exception {
+        String account = "abc";
+        String password = "ab1212";
+        RegisterRequest request = new RegisterRequest(account, password);
+        String jsonString = toJsonString(request);
+        mockMvc.perform(
+                post("/register")
+                        .contentType(MediaType.APPLICATION_JSON).content(jsonString))
+                .andExpect(status().isOk())
+                .andExpect(content().string("fail")
                 );
 
     }

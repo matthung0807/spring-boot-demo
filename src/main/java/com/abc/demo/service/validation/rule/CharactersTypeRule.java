@@ -1,35 +1,39 @@
-package com.abc.demo.service.validation.rule.character;
+package com.abc.demo.service.validation.rule;
 
-import com.abc.demo.service.validation.rule.PasswordValidationProperties;
-import com.abc.demo.service.validation.rule.Rule;
-import com.abc.demo.service.validation.rule.character.type.Character;
+import com.abc.demo.service.validation.properties.PasswordValidationProperties;
+import com.abc.demo.service.validation.rule.character.Character;
+import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Slf4j
+@ToString
 public class CharactersTypeRule implements Rule {
 
     private final Set<Character> characterSet = PasswordValidationProperties.getCharacterSet();
 
     public CharactersTypeRule(Character... characters) {
+        if (characters.length == 0) {
+            throw new IllegalArgumentException("no character");
+        }
         for (Character character : characters) {
             characterSet.add(character);
         }
     }
 
     @Override
-    public boolean match(String content) {
-        System.out.println("CharactersTypeRule.match()");
+    public boolean match(String password) {
 
         for (Character character : characterSet) {
-            System.out.println(character.getClass().getSimpleName());
             String pattern = character.getPattern();
             int count = character.getCount();
             if (count <= 0) {
                 continue;
             }
-            if (isLessThanCount(pattern, content, count)) {
+            if (isLessThanCount(pattern, password, count)) {
                 return false;
             }
         }

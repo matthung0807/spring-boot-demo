@@ -1,4 +1,4 @@
-package com.abc.demo.service.validation.rule.character.type;
+package com.abc.demo.service.validation.rule.character;
 
 public class DigitCharacter extends AbstractCharacter {
 
@@ -10,4 +10,5 @@ public class DigitCharacter extends AbstractCharacter {
     public String pattern() {
         return "[0-9]";
     }
+
 }

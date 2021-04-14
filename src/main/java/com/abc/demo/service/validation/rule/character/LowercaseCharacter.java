@@ -1,6 +1,5 @@
-package com.abc.demo.service.validation.rule.character.type;
+package com.abc.demo.service.validation.rule.character;
 
-import java.util.Objects;
 
 public class LowercaseCharacter extends AbstractCharacter {
 

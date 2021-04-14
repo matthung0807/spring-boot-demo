@@ -1,13 +1,13 @@
-package com.abc.demo.service.validation.rule.character;
+package com.abc.demo.service.validation.rule;
 
-import com.abc.demo.service.validation.rule.Rule;
+import lombok.ToString;
 
+@ToString
 public class NoRepeatSequenceRule implements Rule {
 
     @Override
-    public boolean match(String content) {
-        System.out.println("NoRepeatSequenceRule.match()");
-        return !isRepeat(content);
+    public boolean match(String password) {
+        return !isRepeat(password);
     }
 
     private boolean isRepeat(String content) {

@@ -1,4 +1,4 @@
-package com.abc.demo.service.validation.rule.character.type;
+package com.abc.demo.service.validation.rule.character;
 
 import java.util.Objects;
 
@@ -35,5 +35,12 @@ public abstract class AbstractCharacter implements Character {
     @Override
     public int hashCode() {
         return Objects.hash(pattern);
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() + "{" +
+                "count=" + count +
+                '}';
     }
 }
