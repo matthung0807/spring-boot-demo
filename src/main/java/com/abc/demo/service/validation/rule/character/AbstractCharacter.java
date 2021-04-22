@@ -7,11 +7,7 @@ public abstract class AbstractCharacter implements Character {
     protected String pattern;
     protected int count;
 
-    protected AbstractCharacter(int count) {
-        if (count < 1) {
-            throw new IllegalArgumentException("count is less than 1");
-        }
-        this.count = count;
+    protected AbstractCharacter() {
         this.pattern = pattern();
     }
 

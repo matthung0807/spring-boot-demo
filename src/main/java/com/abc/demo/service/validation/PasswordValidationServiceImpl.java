@@ -2,15 +2,30 @@ package com.abc.demo.service.validation;
 
 import com.abc.demo.service.validation.rule.Rule;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Slf4j
+@Scope("prototype")
+@Component
 public class PasswordValidationServiceImpl implements PasswordValidationService {
 
-    @Override
-    public boolean isValid(String password, Rule... rules) {
-        log.info("validate password by rules={}", rules);
+    @Autowired
+    private List<Rule> ruleList;
 
-        for (Rule rule : rules) {
+    @Override
+    public boolean isValid(String password) {
+
+        log.info("validate password by rules={}", ruleList);
+
+        for (Rule rule : ruleList) {
             if (!rule.match(password)) {
                 log.info("password does not match rule of {}", rule);
                 return false;
@@ -18,5 +33,15 @@ public class PasswordValidationServiceImpl implements PasswordValidationService 
         }
         return true;
     }
+
+    @SafeVarargs
+    @Override
+    public final PasswordValidationService config(Class<? extends Rule>... ruleClasses) {
+        Set<Class<? extends Rule>> ruleSet = new HashSet<>(Arrays.asList(ruleClasses));
+        ruleList = ruleList.stream().filter(rule -> ruleSet.contains(rule.getClass()))
+                .collect(Collectors.toList());
+        return this;
+    }
+
 
 }

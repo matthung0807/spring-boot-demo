@@ -1,75 +1,28 @@
 package com.abc.demo.service.validation.properties;
 
-import com.abc.demo.service.validation.rule.character.Character;
-import com.abc.demo.service.validation.rule.character.DigitCharacter;
-import com.abc.demo.service.validation.rule.character.LowercaseCharacter;
-import lombok.extern.slf4j.Slf4j;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.*;
-
-@Slf4j
+@Getter
+@Setter
+@Component
 public class PasswordValidationProperties {
 
-    private PasswordValidationProperties() {
-    }
+    @Value("${rule.length.min:0}")
+    private int lengthMin;
 
-    private static final String FILENAME = "password-validation-config.properties";
+    @Value("${rule.length.max:1}")
+    private int lengthMax;
 
-    public static final int MIN_LENGTH;
-    public static final int MAX_LENGTH;
+    @Value("${rule.char.types:}")
+    private String[] charTyeps;
 
-    private static final Set<Character> characterSet;
+    @Value("${rule.char.lowercase.count:1}")
+    private int lowercaseCount;
 
-    static {
-        log.info("load properties from {}", FILENAME);
-        InputStream inputStream =
-                PasswordValidationProperties.class
-                        .getClassLoader().getResourceAsStream(FILENAME);
-        Properties properties = new Properties();
-        try {
-            properties.load(inputStream);
-        } catch (IOException e) {
-            log.error("load {} error", FILENAME);
-            e.printStackTrace();
-        }
+    @Value("${rule.char.digit.count:1}")
+    private int digitCount;
 
-        MIN_LENGTH = getNumberProperties(properties,"rule.length.min");
-        MAX_LENGTH = getNumberProperties(properties,"rule.length.max");
-
-        String[] charTypes = getArrayProperties(properties,"rule.char.types");
-        characterSet = new HashSet<>();
-        for (String character : charTypes) {
-            if (character.equalsIgnoreCase("lowercase")) {
-                int count = Integer.parseInt(properties.getProperty("rule.char.lowercase.count"));
-                characterSet.add(new LowercaseCharacter(count));
-            }
-            if (character.equalsIgnoreCase("digit")) {
-                int count = Integer.parseInt(properties.getProperty("rule.char.digit.count"));
-                characterSet.add(new DigitCharacter(count));
-            }
-        }
-    }
-
-    public static Set<Character> getCharacterSet() {
-        return new HashSet<>(characterSet);
-    }
-
-    private static int getNumberProperties(Properties properties, String propertyKey) {
-        try {
-            return Integer.parseInt(properties.getProperty(propertyKey));
-        } catch (NumberFormatException e) {
-            return 0;
-        }
-    }
-
-    private static String[] getArrayProperties(Properties properties, String propertyKey) {
-        String arrayValue = properties.getProperty(propertyKey);
-        if (arrayValue == null) {
-            return new String[]{};
-        }
-
-        return arrayValue.split(",");
-    }
 }
