@@ -6,6 +6,7 @@ import com.abc.demo.service.validation.rule.CharactersLengthRule;
 import com.abc.demo.service.validation.rule.CharactersTypeRule;
 import com.abc.demo.service.validation.rule.NoRepeatSequenceRule;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,10 +17,11 @@ import javax.validation.Valid;
 public class RegisterController {
 
     @Autowired
-    private PasswordValidationService passwordValidationService;
+    private ApplicationContext context;
 
     @PostMapping("/register")
     public String register(@Valid @RequestBody RegisterRequest registerRequest) {
+        PasswordValidationService passwordValidationService = context.getBean(PasswordValidationService.class);
         boolean valid = passwordValidationService.config(
                 CharactersLengthRule.class,
                 CharactersTypeRule.class,
