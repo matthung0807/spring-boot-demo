@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -37,6 +34,10 @@ public class PasswordValidationServiceImpl implements PasswordValidationService 
     @SafeVarargs
     @Override
     public final PasswordValidationService config(Class<? extends Rule>... ruleClasses) {
+        if (ruleClasses == null || ruleClasses.length < 1) {
+            ruleList = Collections.emptyList();
+        }
+
         Set<Class<? extends Rule>> ruleSet = new HashSet<>(Arrays.asList(ruleClasses));
         ruleList = ruleList.stream().filter(rule -> ruleSet.contains(rule.getClass()))
                 .collect(Collectors.toList());

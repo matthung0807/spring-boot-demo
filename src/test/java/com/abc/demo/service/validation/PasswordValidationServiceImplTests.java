@@ -33,6 +33,7 @@ public class PasswordValidationServiceImplTests {
 
         Assertions.assertAll(
                 () -> Assertions.assertTrue(passwordValidationService.isValid("1abcDef")),
+                () -> Assertions.assertFalse(passwordValidationService.isValid(null)),
                 () -> Assertions.assertFalse(passwordValidationService.isValid("123456")),
                 () -> Assertions.assertFalse(passwordValidationService.isValid("abcde"))
         );

@@ -51,6 +51,21 @@ public class RegisterControllerTests {
 
     }
 
+    @Test
+    void register_password_null_fail() throws Exception {
+        String account = "abc";
+        String password = null;
+        RegisterRequest request = new RegisterRequest(account, password);
+        String jsonString = toJsonString(request);
+        mockMvc.perform(
+                post("/register")
+                        .contentType(MediaType.APPLICATION_JSON).content(jsonString))
+                .andExpect(status().isOk())
+                .andExpect(content().string("fail")
+                );
+
+    }
+
     private String toJsonString(Object object) throws JsonProcessingException {
         return new ObjectMapper().writer().writeValueAsString(object);
     }
