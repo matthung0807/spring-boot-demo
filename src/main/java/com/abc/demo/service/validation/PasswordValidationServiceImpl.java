@@ -31,14 +31,13 @@ public class PasswordValidationServiceImpl implements PasswordValidationService 
         return true;
     }
 
-    @SafeVarargs
     @Override
-    public final PasswordValidationService config(Class<? extends Rule>... ruleClasses) {
-        if (ruleClasses == null || ruleClasses.length < 1) {
+    public final PasswordValidationService config(List<Class<? extends Rule>> ruleClasses) {
+        if (ruleClasses == null || ruleClasses.size() < 1) {
             ruleList = Collections.emptyList();
         }
 
-        Set<Class<? extends Rule>> ruleSet = new HashSet<>(Arrays.asList(ruleClasses));
+        Set<Class<? extends Rule>> ruleSet = new HashSet<>(ruleClasses);
         ruleList = ruleList.stream().filter(rule -> ruleSet.contains(rule.getClass()))
                 .collect(Collectors.toList());
         return this;

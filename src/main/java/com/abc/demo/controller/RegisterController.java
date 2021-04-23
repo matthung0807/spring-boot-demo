@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.Arrays;
 
 @RestController
 public class RegisterController {
@@ -23,9 +24,9 @@ public class RegisterController {
     public String register(@Valid @RequestBody RegisterRequest registerRequest) {
         PasswordValidationService passwordValidationService = context.getBean(PasswordValidationService.class);
         boolean valid = passwordValidationService.config(
-                CharactersLengthRule.class,
-                CharactersTypeRule.class,
-                NoRepeatSequenceRule.class
+                Arrays.asList(CharactersLengthRule.class,
+                        CharactersTypeRule.class,
+                        NoRepeatSequenceRule.class)
         ).isValid(registerRequest.getPassword());
 
         return valid ? "success" : "fail";

@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 @SpringBootTest
 public class PasswordValidationServiceImplTests {
 
@@ -16,7 +19,7 @@ public class PasswordValidationServiceImplTests {
 
     @Test
     public void isValid_5to12() {
-        passwordValidationService.config(CharactersLengthRule.class);
+        passwordValidationService.config(Collections.singletonList(CharactersLengthRule.class));
 
         Assertions.assertAll(
                 () -> Assertions.assertTrue(passwordValidationService.isValid("12345")),
@@ -29,7 +32,7 @@ public class PasswordValidationServiceImplTests {
 
     @Test
     public void isValid_1lowercaseAnd1digit() {
-        passwordValidationService.config(CharactersTypeRule.class);
+        passwordValidationService.config(Collections.singletonList(CharactersTypeRule.class));
 
         Assertions.assertAll(
                 () -> Assertions.assertTrue(passwordValidationService.isValid("1abcDef")),
@@ -42,7 +45,7 @@ public class PasswordValidationServiceImplTests {
     @Test
     public void isValid_5to12And1digitAnd1lowercase() {
 
-        passwordValidationService.config(CharactersLengthRule.class, CharactersTypeRule.class);
+        passwordValidationService.config(Arrays.asList(CharactersLengthRule.class, CharactersTypeRule.class));
 
         Assertions.assertAll(
                 () -> Assertions.assertTrue(passwordValidationService.isValid("12345abcde")),
@@ -55,12 +58,12 @@ public class PasswordValidationServiceImplTests {
     @Test
     public void isValid_noRepeat() {
 
-        passwordValidationService.config(NoRepeatSequenceRule.class);
+        passwordValidationService.config(Collections.singletonList(NoRepeatSequenceRule.class));
 
         Assertions.assertAll(
-                () -> Assertions.assertTrue(passwordValidationService.isValid("a" )),
-                () -> Assertions.assertTrue(passwordValidationService.isValid("abc" )),
-                () -> Assertions.assertTrue(passwordValidationService.isValid("abc123" )),
+                () -> Assertions.assertTrue(passwordValidationService.isValid("a")),
+                () -> Assertions.assertTrue(passwordValidationService.isValid("abc")),
+                () -> Assertions.assertTrue(passwordValidationService.isValid("abc123")),
                 () -> Assertions.assertTrue(passwordValidationService.isValid("abc123abc")),
                 () -> Assertions.assertTrue(passwordValidationService.isValid("abcba")),
                 () -> Assertions.assertTrue(passwordValidationService.isValid(null)),
@@ -76,10 +79,10 @@ public class PasswordValidationServiceImplTests {
 
     @Test
     public void isValid_5to12And1digitAnd1lowercaseAndNoRepeat() {
-        passwordValidationService.config(
+        passwordValidationService.config(Arrays.asList(
                 CharactersLengthRule.class,
                 CharactersTypeRule.class,
-                NoRepeatSequenceRule.class);
+                NoRepeatSequenceRule.class));
         Assertions.assertAll(
                 () -> Assertions.assertTrue(passwordValidationService.isValid("ab123")),
                 () -> Assertions.assertTrue(passwordValidationService.isValid("a1234")),
