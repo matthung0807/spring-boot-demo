@@ -33,8 +33,9 @@ public class PasswordValidationServiceImpl implements PasswordValidationService 
 
     @Override
     public final PasswordValidationService config(List<Class<? extends Rule>> ruleClasses) {
-        if (ruleClasses == null || ruleClasses.size() < 1) {
+        if (ruleClasses == null || ruleClasses.isEmpty()) {
             ruleList = Collections.emptyList();
+            return this;
         }
 
         Set<Class<? extends Rule>> ruleSet = new HashSet<>(ruleClasses);
