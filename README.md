@@ -29,3 +29,39 @@ fulfillment of the service. Also, show how to access and use the service at runt
 * Show both unit tests and integration tests
 * Apply the same design principles to the test code that you apply to the actual code
 * Ask questions, confirm your understanding
+
+------
+
+# password-validator User Guild
+
+## Password Validation Rules
+
+`CharactersLengthRule` validates password length.
+
+`CharactersTypeRule` validates password required character types, `DigitCharacter` for numerical digit, `LowercaseCharacter` for lowercase letter.
+
+`NoRepeatSequenceRule` validates there is no repeat sequence of characters immediately followed by the same sequence.
+
+Implements `Rule` interface to create new validation rule.
+
+## Password Requried Character Types
+
+`DigitCharacter` validates at least numbers of digit in password.
+
+`LowercaseCharacter` validates at least numbers of lowercase characters in password.
+
+Implements `Character` to create new charater type for `CharactersTypeRule` validation.
+
+## Configuration properties file
+
+Confiure password validation rules and character types by add the following properties in `password-validation-config.properties` in classpath. 
+
+Notice that The programming configuation will override properties configuration.
+
+|property|type|description|
+|-|-|-|
+|`rule.length.min`|Number|At least password length|
+|`rule.length.max`|Number|At most password length|
+|`rule.char.types`|Array|Required character types. e.g. `digit,lowercase`|
+|`rule.char.lowercase.count`|Number|At least numbers of lowercase letter. 
+|`rule.char.digit.count`|Number|At least numbers of numerical digit|
