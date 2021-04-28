@@ -54,7 +54,7 @@ Implements `Character` to create new charater type for `CharactersTypeRule` vali
 
 ## Configuration properties file
 
-Confiure password validation rules and character types by add the following properties in `password-validation-config.properties` in classpath. 
+Confiure password validation rules and character types by add the following properties in `application.properties` in classpath. 
 
 Notice that The programming configuation will override properties configuration.
 
