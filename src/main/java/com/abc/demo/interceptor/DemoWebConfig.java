@@ -11,8 +11,11 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import java.util.Locale;
 
 @Configuration
-public class DemoInterceptor implements WebMvcConfigurer {
+public class DemoWebConfig implements WebMvcConfigurer {
 
+    /**
+     * 註冊local解析器bean
+     */
     @Bean
     public LocaleResolver localeResolver() {
         CookieLocaleResolver localeResolver = new CookieLocaleResolver();
@@ -20,13 +23,19 @@ public class DemoInterceptor implements WebMvcConfigurer {
         return localeResolver;
     }
 
+    /**
+     * 註冊local攔截器bean
+     */
     @Bean
     public LocaleChangeInterceptor localeChangeInterceptor() {
-        LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
-        lci.setParamName("lang");
-        return lci;
+        LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+        localeChangeInterceptor.setParamName("lang");
+        return localeChangeInterceptor;
     }
 
+    /**
+     * 註冊local截器
+     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
