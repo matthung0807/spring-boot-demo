@@ -1,4 +1,4 @@
 # spring-boot-demo
 Spring Boot Demo
 
-[Spring Boot + Thymeleaf 簡單範例](https://matthung0807.blogspot.com/2021/05/spring-boot-web-thymeleaf-simple-example.html)
+[Spring Boot Thymeleaf 取代頁面片段](https://matthung0807.blogspot.com/2021/05/spring-boot-thymeleaf-replace-page-fragment.html)
