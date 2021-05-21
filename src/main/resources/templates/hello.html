@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Hello Thymeleaf</title>
 </head>
 <body>
-<p th:text="'Hello, ' + ${name} + '!'"/>
+    <div th:replace="header :: header">Header</div>
+    <div>
+        <p th:text="'Hello, ' + ${name} + '!'"/>
+    </div>
+    <div th:replace="footer :: footer">Footer</div>
 </body>
 </html>
