@@ -14,7 +14,7 @@ import java.util.Locale;
 public class DemoWebConfig implements WebMvcConfigurer {
 
     /**
-     * 註冊local解析器bean
+     * 註冊locale解析器bean
      */
     @Bean
     public LocaleResolver localeResolver() {
@@ -24,17 +24,17 @@ public class DemoWebConfig implements WebMvcConfigurer {
     }
 
     /**
-     * 註冊local攔截器bean
+     * 註冊locale攔截器bean
      */
     @Bean
     public LocaleChangeInterceptor localeChangeInterceptor() {
         LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
-        localeChangeInterceptor.setParamName("lang");
+        localeChangeInterceptor.setParamName("lang"); // use request param "lang" to change locale setting
         return localeChangeInterceptor;
     }
 
     /**
-     * 註冊local截器
+     * 註冊locale截器
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
