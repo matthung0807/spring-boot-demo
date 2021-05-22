@@ -5,10 +5,11 @@
     <title>Hello Thymeleaf</title>
 </head>
 <body>
-    <div th:replace="header :: header">Header</div>
+    <div th:replace="~{logo}"></div>
+    <div th:replace="~{header :: header}">Header</div>
     <div>
         <p th:text="'Hello, ' + ${name} + '!'"/>
     </div>
-    <div th:replace="footer :: footer">Footer</div>
+    <div th:replace="~{footer :: footer}">Footer</div>
 </body>
 </html>
