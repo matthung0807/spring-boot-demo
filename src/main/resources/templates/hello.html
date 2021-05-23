@@ -1,50 +1,40 @@
 <!DOCTYPE html>
-<html><head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Hello Thymeleaf</title>
 </head>
 <body>
-<p>Hello, World!</p>
+<p th:text="'Hello, ' + ${name} + '!'"/>
 
 <h2>Employee List</h2>
 <table>
     <thead>
-    <tr>
-        <th>INDEX</th>
-        <th>COUNT</th>
-        <th>EVEN</th>
-        <th>ODD</th>
-        <th>FIRST</th>
-        <th>LAST</th>
-        <th>ID</th>
-        <th>NAME</th>
-        <th>AGE</th>
-    </tr>
+        <tr>
+            <th>INDEX</th>
+            <th>COUNT</th>
+            <th>EVEN</th>
+            <th>ODD</th>
+            <th>FIRST</th>
+            <th>LAST</th>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>AGE</th>
+        </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>0</td>
-        <td>1</td>
-        <td>false</td>
-        <td>true</td>
-        <td>true</td>
-        <td>false</td>
-        <td>1</td>
-        <td>John</td>
-        <td>29</td>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>true</td>
-        <td>false</td>
-        <td>false</td>
-        <td>true</td>
-        <td>2</td>
-        <td>Anne</td>
-        <td>22</td>
-    </tr>
+        <tr th:each="employee,status : ${employeeList}">
+            <td th:text="${status.index}">index</td>
+            <td th:text="${status.count}">count</td>
+            <td th:text="${status.even}">even</td>
+            <td th:text="${status.odd}">odd</td>
+            <td th:text="${status.first}">first</td>
+            <td th:text="${status.last}">last</td>
+            <td th:text="${employee.id}">id</td>
+            <td th:text="${employee.name}">name</td>
+            <td th:text="${employee.age}">age</td>
+        </tr>
     </tbody>
 </table>
-
-</body></html>
+</body>
+</html>
