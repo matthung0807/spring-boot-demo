@@ -5,6 +5,16 @@
     <title>Hello Thymeleaf</title>
 </head>
 <body>
-<p th:text="'Hello, ' + ${name} + '!'"/>
+    <p th:text="'Hello, ' + ${name} + '!'"/>
+
+    <h3>Employee</h3>
+    <div th:object="${employee}">
+        <ul>
+            <li>ID:<span th:text="*{id}"></span></li>
+            <li>Name:<span th:text="${employee.name}"></span></li>
+            <li>Age:<span th:text="${#object.age}"></span></li>
+        </ul>
+    </div>
+
 </body>
 </html>
