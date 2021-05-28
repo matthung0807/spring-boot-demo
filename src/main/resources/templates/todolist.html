@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{/fragments/link}"></th:block>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Todolist</title>
+</head>
+<body>
+    <header th:insert="~{/fragments/header}"></header>
+    <main>
+        <div class="container p-4">
+            <div class="row">
+                <div class="col p-2">
+                    TODO 筆數：[[${totalItems}]]
+                </div>
+                <div class="col-2 p-2">
+                    <a th:href="@{/todolist/add}" class="btn btn-primary">Add</a>
+                </div>
+            </div>
+
+
+            <div class="row border">
+                <div class="col-1 p-2 fw-bold">ID</div>
+                <div class="col p-2 fw-bold">TODO</div>
+                <div class="col-2 p-2 fw-bold">EDIT</div>
+            </div>
+            <div class="row border" th:each="todo, status : ${todolist}">
+                <div class="col-1 p-2" th:text="${todo.id}">id</div>
+                <div class="col p-2" th:text="${todo.desc}">desc</div>
+                <div class="col-2 p-2">
+                    <a th:href="@{'/todolist/update/' + ${todo.id}}" class="btn btn-danger">Modify</a>
+                    <a th:href="@{'/todolist/delete/' + ${todo.id}}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <nav>
+                <ul class="pagination">
+                    <li th:class="${page <= 1} ? 'page-item disabled' : 'page-item'">
+                        <a class="page-link" th:href="@{'/todolist/' + ${page - 1}}">Previous</a>
+                    </li>
+                    <th:block th:each="i : ${#numbers.sequence(1, totalPages)}">
+                        <li class="page-item">
+                            <a class="page-link" href="#" th:href="@{'/todolist/' + ${i}}">[[${i}]]</a>
+                        </li>
+                    </th:block>
+                    <li th:class="${page >= totalPages} ? 'page-item disabled' : 'page-item'">
+                        <a class="page-link" th:href="@{'/todolist/' + ${page + 1}}">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    </main>
+    <footer th:insert="~{/fragments/footer}"></footer>
+</body>
+</html>

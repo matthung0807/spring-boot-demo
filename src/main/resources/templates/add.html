@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{/fragments/link}"></th:block>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Todolist</title>
+</head>
+<body>
+<header th:insert="~{/fragments/header}"></header>
+<main>
+    <form class="row" th:action="@{/todolist/add}" method="post">
+        <th:block th:unless="${#strings.isEmpty(error)}">
+            <div class="alert alert-danger" role="alert">[[${error}]]</div>
+        </th:block>
+        <label for="desc" class="col-1 col-form-label">TODO：</label>
+        <div class="col">
+            <input type="text" class="form-control" name="desc" id="desc">
+        </div>
+        <div class="col-1">
+            <input type="submit" class="btn btn-primary"/>
+        </div>
+    </form>
+</main>
+<footer th:insert="~{/fragments/footer}"></footer>
+</body>
+</html>
