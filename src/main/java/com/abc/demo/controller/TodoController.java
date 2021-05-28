@@ -70,7 +70,7 @@ public class TodoController {
         return "redirect:/todolist";
     }
 
-    @GetMapping("todolist/about")
+    @GetMapping("/todolist/about")
     public String about() {
         return "about";
     }
