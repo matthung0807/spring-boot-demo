@@ -9,30 +9,30 @@
         <div class="container p-4">
             <div class="row">
                 <div class="col p-2">
-                    TODO 筆數：[[${totalItems}]]
+                    [[#{todolist.totolitems}]]：[[${totalItems}]]
                 </div>
                 <div class="col p-2">
-                    目前頁數：[[${page}]]
+                    [[#{todolist.current-page}]]：[[${page}]]
                 </div>
                 <div class="col-2 p-2">
-                    <a th:href="@{/todolist/add}" class="btn btn-primary">Add</a>
+                    <a th:href="@{/todolist/add}" class="btn btn-primary">[[#{todolist.add}]]</a>
                 </div>
             </div>
 
 
             <div class="row border">
-                <div class="col-1 p-2 fw-bold">ID</div>
-                <div class="col p-2 fw-bold">TODO</div>
-                <div class="col-2 p-2 fw-bold">EDIT</div>
+                <div class="col-1 p-2 fw-bold">[[#{todolist.id}]]</div>
+                <div class="col p-2 fw-bold">[[#{todolist.todo}]]</div>
+                <div class="col-2 p-2 fw-bold">[[#{todolist.edit}]]</div>
             </div>
             <div class="row border" th:each="todo, status : ${todolist}">
                 <div class="col-1 p-2" th:text="${todo.id}">id</div>
                 <div class="col p-2" th:text="${todo.desc}">desc</div>
                 <div class="col-2 p-2">
-                    <a th:href="@{'/todolist/update/' + ${todo.id}}" class="btn btn-danger">Modify</a>
                     <form th:action="@{/todolist/delete}" method="post">
+                        <a th:href="@{'/todolist/update/' + ${todo.id}}" class="btn btn-danger">[[#{todolist.modify}]]</a>
+                        <button type="submit" class="btn btn-danger">[[#{todolist.delete}]]</button>
                         <input type="hidden" name="id" th:value="${todo.id}">
-                        <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </div>
                 </div>
@@ -42,7 +42,7 @@
             <nav>
                 <ul class="pagination">
                     <li th:class="${page <= 1} ? 'page-item disabled' : 'page-item'">
-                        <a class="page-link" th:href="@{'/todolist/' + ${page - 1}}">Previous</a>
+                        <a class="page-link" th:href="@{'/todolist/' + ${page - 1}}">[[#{todolist.previous-page}]]</a>
                     </li>
                     <th:block th:if="${totalPages} gt 0" th:each="i : ${#numbers.sequence(1, totalPages)}">
                         <li class="page-item">
@@ -50,7 +50,7 @@
                         </li>
                     </th:block>
                     <li th:class="${page >= totalPages} ? 'page-item disabled' : 'page-item'">
-                        <a class="page-link" th:href="@{'/todolist/' + ${page + 1}}">Next</a>
+                        <a class="page-link" th:href="@{'/todolist/' + ${page + 1}}">[[#{todolist.next-page}]]</a>
                     </li>
                 </ul>
             </nav>

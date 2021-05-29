@@ -11,16 +11,15 @@
             <th:block th:unless="${#strings.isEmpty(error)}">
                 <div class="alert alert-danger" role="alert">[[${error}]]</div>
             </th:block>
-            <label for="desc" class="col-1 col-form-label">TODO：</label>
+            <label for="desc" class="col-1 col-form-label">[[#{todolist.todo}]]：</label>
             <div class="col">
                 <input type="text" class="form-control" name="desc" id="desc">
             </div>
-            <div class="col-1">
-                <input type="submit" class="btn btn-primary"/>
+            <div class="col-2">
+                <button type="submit" class="btn btn-primary">[[#{todolist.confirm}]]</button>
+                <a th:href="@{/todolist}" class="btn btn-primary">[[#{todolist.cancel}]]</a>
             </div>
-            <div class="col-1">
-                <a th:href="@{/todolist}" class="btn btn-primary">Cancel</a>
-            </div>
+
         </form>
     </div>
 </main>

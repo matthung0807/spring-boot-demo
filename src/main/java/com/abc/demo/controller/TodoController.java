@@ -5,13 +5,21 @@ import com.abc.demo.model.TodoModel;
 import com.abc.demo.service.TodoService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Locale;
 
 @Controller
 public class TodoController {
+
+    @Autowired
+    private MessageSource messageSource;
 
     @Autowired
     private TodoService todoService;
@@ -41,7 +49,7 @@ public class TodoController {
     @PostMapping(value = "/todolist/add")
     public String add(@RequestParam String desc, Model model) {
         if (StringUtils.isEmpty(desc)) {
-            model.addAttribute("error", "內容不可為空");
+            model.addAttribute("error", getErrorEmptyMessage());
             return "add";
         }
         todoService.add(desc);
@@ -68,11 +76,17 @@ public class TodoController {
             TodoModel todoModel = todoService.getById(id);
             model.addAttribute("id", todoModel.getId());
             model.addAttribute("desc", todoModel.getDesc());
-            model.addAttribute("error", "內容不可為空");
+            model.addAttribute("error", getErrorEmptyMessage());
             return "update";
         }
         todoService.update(id, desc);
         return "redirect:/todolist";
+    }
+
+    private String getErrorEmptyMessage() {
+        return messageSource.getMessage("error.empty",
+                new String[]{messageSource.getMessage("todolist.desc", null, Locale.getDefault())},
+                Locale.getDefault());
     }
 
     @GetMapping("/todolist/about")
