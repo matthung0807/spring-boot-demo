@@ -30,7 +30,11 @@
                 <div class="col p-2" th:text="${todo.desc}">desc</div>
                 <div class="col-2 p-2">
                     <a th:href="@{'/todolist/update/' + ${todo.id}}" class="btn btn-danger">Modify</a>
-                    <a th:href="@{'/todolist/delete/' + ${todo.id}}" class="btn btn-danger">Delete</a>
+                    <form th:action="@{/todolist/delete}" method="post">
+                        <input type="hidden" name="id" th:value="${todo.id}">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
                 </div>
             </div>
         </div>

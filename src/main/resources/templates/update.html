@@ -8,6 +8,9 @@
 <main>
     <div class="p-5">
         <form class="row" th:action="@{/todolist/update}" method="post">
+            <th:block th:unless="${#strings.isEmpty(error)}">
+                <div class="alert alert-danger" role="alert">[[${error}]]</div>
+            </th:block>
             <label for="desc" class="col-1 col-form-label">TODO：</label>
             <div class="col">
                 <input type="text" class="form-control" name="desc" id="desc" th:value="${desc}">
