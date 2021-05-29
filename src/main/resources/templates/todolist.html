@@ -23,12 +23,12 @@
             <div class="row border">
                 <div class="col-1 p-2 fw-bold">[[#{todolist.id}]]</div>
                 <div class="col p-2 fw-bold">[[#{todolist.todo}]]</div>
-                <div class="col-2 p-2 fw-bold">[[#{todolist.edit}]]</div>
+                <div class="col-3 p-2 fw-bold">[[#{todolist.edit}]]</div>
             </div>
             <div class="row border" th:each="todo, status : ${todolist}">
                 <div class="col-1 p-2" th:text="${todo.id}">id</div>
                 <div class="col p-2" th:text="${todo.desc}">desc</div>
-                <div class="col-2 p-2">
+                <div class="col-3 p-2">
                     <form th:action="@{/todolist/delete}" method="post">
                         <a th:href="@{'/todolist/update/' + ${todo.id}}" class="btn btn-danger">[[#{todolist.modify}]]</a>
                         <button type="submit" class="btn btn-danger">[[#{todolist.delete}]]</button>

@@ -6,6 +6,7 @@ import com.abc.demo.service.TodoService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -85,8 +86,8 @@ public class TodoController {
 
     private String getErrorEmptyMessage() {
         return messageSource.getMessage("error.empty",
-                new String[]{messageSource.getMessage("todolist.desc", null, Locale.getDefault())},
-                Locale.getDefault());
+                new String[]{messageSource.getMessage("todolist.desc", null, LocaleContextHolder.getLocale())},
+                LocaleContextHolder.getLocale());
     }
 
     @GetMapping("/todolist/about")
