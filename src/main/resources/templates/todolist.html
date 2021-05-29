@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="~{/fragments/link}"></th:block>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Todolist</title>
+    <th:block th:replace="~{/fragments/head}"></th:block>
 </head>
 <body>
     <header th:insert="~{/fragments/header}"></header>
@@ -39,7 +37,7 @@
                     <li th:class="${page <= 1} ? 'page-item disabled' : 'page-item'">
                         <a class="page-link" th:href="@{'/todolist/' + ${page - 1}}">Previous</a>
                     </li>
-                    <th:block th:each="i : ${#numbers.sequence(1, totalPages)}">
+                    <th:block th:if="${totalPages} gt 0" th:each="i : ${#numbers.sequence(1, totalPages)}">
                         <li class="page-item">
                             <a class="page-link" href="#" th:href="@{'/todolist/' + ${i}}">[[${i}]]</a>
                         </li>

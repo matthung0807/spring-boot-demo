@@ -1,10 +1,22 @@
-<div class="d-flex flex-row justify-content-between p-5" xmlns:th="http://www.thymeleaf.org">
-    <div><a href="#" th:href="@{/todolist}"><img width="50" height="50" th:src="@{/spring.png}"></a> <span class="fs-2 fw-bold">TODOLIST</span></div>
-    <div>
-        <nav>
-            <div class="navitem">
-                <a class="nav-link" th:href="@{/todolist/about}">About</a>
+<!--<div class="d-flex flex-row justify-content-between p-5" xmlns:th="http://www.thymeleaf.org">-->
+    <!--    <div><a href="#" th:href="@{/todolist}"><img width="50" height="50" th:src="@{/spring.png}"></a> <span class="fs-2 fw-bold">TODOLIST</span></div>-->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" xmlns:th="http://www.thymeleaf.org">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/todolist}">
+                <img th:src="@{/spring.png}" width="50" height="50" class="d-inline-block align-top" alt="">
+                TODOLIST
+            </a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/todolist}">Todolist</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/todolist/about}">About</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    </div>
-</div>
+        </div>
+    </nav>
+<!--</div>-->

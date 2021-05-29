@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="~{/fragments/link}"></th:block>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Todolist</title>
+    <th:block th:replace="~{/fragments/head}"></th:block>
 </head>
 <body>
 <header th:insert="~{/fragments/header}"></header>
 <main>
-    <form class="row" th:action="@{/todolist/update}" method="post">
-        <label for="desc" class="col-1 col-form-label">TODO：</label>
-        <div class="col">
-            <input type="text" class="form-control" name="desc" id="desc" th:value="${desc}">
-        </div>
-        <div class="col-1">
-            <input type="submit" class="btn btn-primary"/>
-        </div>
-        <input type="hidden" class="form-control" name="id" th:value="${id}">
-    </form>
+    <div class="p-5">
+        <form class="row" th:action="@{/todolist/update}" method="post">
+            <label for="desc" class="col-1 col-form-label">TODO：</label>
+            <div class="col">
+                <input type="text" class="form-control" name="desc" id="desc" th:value="${desc}">
+            </div>
+            <div class="col-1">
+                <input type="submit" class="btn btn-primary"/>
+            </div>
+            <div class="col-1">
+                <a th:href="@{/todolist}" class="btn btn-primary">Cancel</a>
+            </div>
+            <input type="hidden" class="form-control" name="id" th:value="${id}">
+        </form>
+    </div>
 </main>
 <footer th:insert="~{/fragments/footer}"></footer>
 </body>
