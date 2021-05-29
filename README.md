@@ -3,7 +3,7 @@ Spring Boot Demo
 
 [Spring Boot Thymeleaf TODO LIST 範例](https://matthung0807.blogspot.com/2021/05/spring-boot-thymeleaf-todolist-example.html)
 
-##使用技術：
+## 使用技術：
 
 * Java 8：撰寫後端應用程式的程式語言。
 * Maven 3：Java應用程式的建置及套件管理工具。
