@@ -11,6 +11,9 @@
                 <div class="col p-2">
                     TODO 筆數：[[${totalItems}]]
                 </div>
+                <div class="col p-2">
+                    目前頁數：[[${page}]]
+                </div>
                 <div class="col-2 p-2">
                     <a th:href="@{/todolist/add}" class="btn btn-primary">Add</a>
                 </div>
@@ -39,7 +42,7 @@
                     </li>
                     <th:block th:if="${totalPages} gt 0" th:each="i : ${#numbers.sequence(1, totalPages)}">
                         <li class="page-item">
-                            <a class="page-link" href="#" th:href="@{'/todolist/' + ${i}}">[[${i}]]</a>
+                            <a class="page-link" th:classappend="${page == i} ? active" th:href="@{'/todolist/' + ${i}}">[[${i}]]</a>
                         </li>
                     </th:block>
                     <li th:class="${page >= totalPages} ? 'page-item disabled' : 'page-item'">
