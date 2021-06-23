@@ -4,9 +4,6 @@ import com.abc.demo.entity.Employee;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.jpa.domain.Specification;
-
-import javax.persistence.criteria.*;
 
 @SpringBootTest
 public class EmployeeRepositoryTests {
@@ -16,20 +13,16 @@ public class EmployeeRepositoryTests {
 
     @Test
     public void test() {
+        // insert
+        Employee employee = new Employee(4, "Jack", 26);
+        employee = employeeRepository.save(employee);
 
-        String name = "Andy";
-        int age = 20;
+        // update
+        employee.setName("Jackson");
+        employeeRepository.save(employee);
 
-        employeeRepository.findAll(new Specification<Employee>() {
-            @Override
-            public Predicate toPredicate(Root<Employee> root, CriteriaQuery<?> cq, CriteriaBuilder cb) {
-                Predicate predicate = cb.and(
-                        cb.equal(root.get("name"), name),
-                        cb.greaterThan(root.get("age"), age));
-                cq.orderBy(cb.desc(root.get("id")));
-                return predicate;
-            }
-        });
+        // delete
+        employeeRepository.delete(employee);
 
     }
 
