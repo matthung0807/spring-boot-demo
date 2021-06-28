@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<title>Title</title>
+<script>
+$(function() {
+  $.ajax({
+    url : '/langs',
+    type : 'get',
+    dataType : 'json',
+    success : function(data) {
+      inputAutocomplete(data)
+    },
+  });
+});
+
+function inputAutocomplete(data) {
+  $("#lang").autocomplete({
+    source: data,
+    minLength: 2,
+    messages: {
+      noResults: '', // do not show no result message
+      results: function(amount) { // do not show numbers of results message
+          return ''
+      }
+    }
+  });
+}
+</script>
+</head>
+<body>
+    <input id="lang">
+</body>
+</html>
