@@ -1,0 +1,36 @@
+openapi: 3.0.0
+info:
+  contact: 
+    name: "菜鳥工程師肉豬"
+    url: "https://matthung0807.blogspot.com/"
+  title: "Webhooks Events API"
+  version: "1.0.0"
+paths:
+  "/hello":
+    post:
+      description: Hello
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Hello"
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: success
+      tags:
+        - Hello
+components:
+  schemas:
+    Hello:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
