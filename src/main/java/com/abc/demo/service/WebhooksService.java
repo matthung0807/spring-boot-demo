@@ -4,7 +4,6 @@ import com.abc.demo.controller.request.WebhooksRegisterRequest;
 import com.abc.demo.dto.WebhooksRegisterDto;
 import org.springframework.stereotype.Service;
 
-import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;

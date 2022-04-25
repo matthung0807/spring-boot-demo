@@ -17,7 +17,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @RestController
-public class WebHooksController {
+public class WebhooksController {
 
     @Autowired
     private WebhooksService webhooksService;
