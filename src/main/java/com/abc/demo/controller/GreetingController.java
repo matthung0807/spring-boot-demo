@@ -40,9 +40,9 @@ public class GreetingController {
         }
 
         var httpClient = HttpClient.newBuilder()
-                .version(HttpClient.Version.HTTP_1_1) // http 1.1
-                .connectTimeout(Duration.ofSeconds(3)) // timeout after 5 seconds
-                .sslContext(disabledSSLContext()) // disable SSL verify
+                .version(HttpClient.Version.HTTP_1_1)
+                .connectTimeout(Duration.ofSeconds(3))
+                .sslContext(disabledSSLContext())
                 .build();
 
         for (WebhooksRegisterDto dto : registeredDtoList) {
