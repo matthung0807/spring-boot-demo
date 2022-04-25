@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
   contact: 
-    name: "菜鳥工程師肉豬"
-    url: "https://matthung0807.blogspot.com/"
+    name: "菜鳥工程師肉豬-Spring Boot Webhooks簡單實作"
+    url: "https://matthung0807.blogspot.com/2022/04/spring-boot-webhooks-simple-impl.html"
   title: "Webhooks Events API"
   version: "1.0.0"
 paths:
