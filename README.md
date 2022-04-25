@@ -1,4 +1,2 @@
 # spring-boot-demo
-Spring Boot Demo
-
-本專案用來說明Spring Boot的各種操作範例。不同branch代表不同範例。
+[Spring Boot Webhooks簡單實作](https://matthung0807.blogspot.com/2022/04/spring-boot-webhooks-simple-impl.html)
