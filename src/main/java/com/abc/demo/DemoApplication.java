@@ -4,6 +4,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.boot.SpringApplication;
@@ -20,17 +21,26 @@ public class DemoApplication {
         String apiKey = "API_KEY";
 
         String requestBody = new ObjectMapper().writeValueAsString(Map.of(
-                "origin", Map.of("address", "桃園市桃園區大同路100號"),
-                "destination", Map.of("address", "台北市內湖區瑞光路515號"),
-                "travelMode", "TWO_WHEELER"));
+                "origins", List.of(
+                        Map.of("waypoint",
+                                Map.of("address", "桃園市桃園區大同路100號"))),
+                "destinations", List.of(
+                        Map.of("waypoint",
+                                Map.of("address", "台北市內湖區瑞光路515號"))),
+                "travelMode", "DRIVE"));
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://routes.googleapis.com/directions/v2:computeRoutes"))
+                .uri(URI.create("https://routes.googleapis.com/distanceMatrix/v2:computeRouteMatrix"))
                 .header("Content-Type", "application/json")
                 .header("X-Goog-Api-Key", apiKey)
                 .header("X-Goog-FieldMask", String.join(",",
-                        "routes.distanceMeters",
-                        "routes.duration"))
+                        "status",
+                        "condition",
+                        "distanceMeters",
+                        "duration",
+                        "originIndex",
+                        "destinationIndex"
+                ))
                 .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                 .build();
 
